@@ -1,0 +1,40 @@
+version: '3'
+services:
+  app:
+    container_name: node
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=e-commerce-test
+      - JWT_SECRET=1a438f5c5ac4d8a2749d4beb13e98fd697dfc10df3159afb5abbf0693c4033aa
+    depends_on:
+      - db
+    volumes:
+      - /data:/var/lib/mysql
+
+  db:
+    image: mysql:latest
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: e-commerce-test
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    environment:  
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+     - "8080:80"
+    depends_on:
+      - db

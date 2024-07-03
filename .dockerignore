@@ -1,0 +1,23 @@
+# Ignore node_modules directory
+node_modules
+
+# Ignore npm debug log
+npm-debug.log
+
+# Ignore Dockerfile
+Dockerfile
+
+# Ignore Docker ignore file itself
+.dockerignore
+
+# Ignore any other logs or temporary files
+*.log
+*.tmp
+
+# Ignore other common files or directories not needed in the image
+.git
+.gitignore
+.env
+.vscode
+.idea
+tests
